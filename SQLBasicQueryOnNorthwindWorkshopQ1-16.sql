@@ -85,13 +85,16 @@ from customers
 where fax is null
 
 --Q15
-select * 
-from [Order Details]
+select sum(UnitPrice * Quantity) as TotalPrice
+from [Order Details];
 
 --Q16
 select * 
 from orders
 where customerid in
-(select customerid 
+(select customerid
 from customers
 where companyname = 'alan out' or companyname = 'blone coy')
+
+--add some line to commit
+
