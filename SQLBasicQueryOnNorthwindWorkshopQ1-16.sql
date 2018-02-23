@@ -39,7 +39,7 @@ from orders
 where CustomerID = 'hanar'
 
 --Q7
-select TitleOfCourtesy+ FirstName+ LastName
+select TitleOfCourtesy+ FirstName+ LastName as FullyQualifiedName
 from employees
 order by LastName
 
@@ -54,6 +54,12 @@ from products
 where productname like '%lager%'
 
 --Q10
+select customerid, contactname
+from customers
+where customerid not in 
+(select customerid
+from orders)
+/*
 select customerid, ContactName
 from customers
 where customerid in
@@ -66,6 +72,7 @@ where productid in
 (select productid
 from products
 where Unitsonorder = 0)))
+*/
 
 --Q11
 select avg(unitprice)
@@ -95,6 +102,3 @@ where customerid in
 (select customerid
 from customers
 where companyname = 'alan out' or companyname = 'blone coy')
-
---add some line to commit
-
