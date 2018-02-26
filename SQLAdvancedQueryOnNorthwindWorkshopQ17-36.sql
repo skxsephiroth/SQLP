@@ -80,10 +80,15 @@ select top 5 *
 from [Order Details]  
 order by discount desc
 
-select productid, unitprice*discount as discountInDollars
+select *, unitprice*discount as discountInDollars
 from [Order Details]
-group by productid, discountInDollar  
+--group by productid, discountInDollar  
 order by discountInDollars desc
+
+select top 5 productid, sum(unitprice*discount*quantity) as totalDiscountInDollars
+from [Order Details]
+group by productid  
+order by totalDiscountInDollars desc
 
 --Q25
 select customers.companyname, suppliers.city
