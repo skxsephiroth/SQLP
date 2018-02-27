@@ -1,9 +1,12 @@
 /* Solution for SQL DDL Workshop */
 
+drop table GoodCustomers
+drop table MemberCategories 
+
 --Q1
 create table MemberCategories
-(MemberCategory		nvarchar(2)		not null,
- MemberCatDescription	nvarchar(200)	not null,
+(MemberCategory nvarchar(2) not null,
+ MemberCatDescription nvarchar(200) not null,
  primary key (MemberCategory))
 
 --Q2
@@ -16,12 +19,12 @@ values ('C', 'Class C Members')
 
 --Q3
 create table GoodCustomers
-(CustomerName		nvarchar(50)		not null,
- Address			nvarchar(65),
- PhoneNumber		nvarchar(9)			not null,
- MemberCategory		nvarchar(2),
+(CustomerName nvarchar(50) not null,
+ Address nvarchar(65),
+ PhoneNumber nvarchar(9) not null,
+ MemberCategory nvarchar(2),
  primary key (CustomerName, PhoneNumber),
- foreign key (MemberCategory)	references MemberCategories (MemberCategory))
+ foreign key (MemberCategory) references MemberCategories)
 
 --Q4
 insert into GoodCustomers
@@ -42,7 +45,7 @@ values ('Grace Leong', '15 Bukit Purmei Road, Singapore 0904', 278865, 'A')
 --Q7
 insert into GoodCustomers
 values ('Lynn Lim', '15 Bukit Purmei Road, Singapore 0904', 278865, 'P')
---conflect with foreign key constraint
+--conflict with foreign key constraint
 
 --Q8
 update GoodCustomers 
@@ -80,19 +83,24 @@ add ICNumber nvarchar(10)
 --Q15
 create unique index ICIndex on 
 GoodCustomers(ICNumber)
+-- duplicate key was found
 
 --Q16
 create index FaxIndex on 
-GoodCustomers(FaxNumber)
+GoodCustomers(FaxNumber) -- if you see red lines, SQL is not powerful enough to detect table or column recently created.
 
 --Q17
+drop index FaxIndex on GoodCustomers
 
 --Q18
+alter table GoodCustomers
+drop column FaxNumber
 
 --Q19
+delete from GoodCustomers
 
 --Q20
-
+drop table GoodCustomers
 
 
  
